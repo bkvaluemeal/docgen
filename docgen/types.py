@@ -16,13 +16,16 @@ class Function(object):
 
 	Args:
 		func (function): The function to wrap
+		is_top (bool): Is this function in the top level
 	'''
 
-	def __init__(self, func):
+	def __init__(self, func, is_top = False):
 		self.func = func
+		self.is_top = is_top
 
 	def __str__(self):
-		return '#### %s(%s)\n\n%s' % (
+		return '###%s %s(%s)\n\n%s' % (
+			'' if self.is_top else '#',
 			self.func.__name__,
 			', '.join(inspect.getargspec(self.func).args[1:]),
 			util.gen_tables(
@@ -99,14 +102,14 @@ class Module(object):
 					if inspect.isclass(mem):
 						self.objs.append(Class(mem))
 					elif inspect.isfunction(mem):
-						self.funcs.append(Function(mem))
+						self.funcs.append(Function(mem, True))
 
 	def __str__(self):
 		result = '%s\n%s\n\n%s\n\n%s' % (
 			self.name,
 			'=' * len(self.name),
 			self.docs,
-			'- ' * 40
+			('- ' * 40).strip()
 		)
 
 		if len(self.objs) > 0:
@@ -187,14 +190,17 @@ class Package(object):
 				if not attr.endswith('__'):
 					self._get_modules(mod, attr, mod.__package__)
 		except:
-			mod = __import__(
-				pkg + '.' + mod,
-				fromlist = [mod]
-			)
+			try:
+				mod = __import__(
+					pkg + '.' + mod,
+					fromlist = [mod]
+				)
 
-			self.mods.append(
-				Module(mod, pkg)
-			)
+				self.mods.append(
+					Module(mod, pkg)
+				)
+			except:
+				pass
 
 	def save(self):
 		'''

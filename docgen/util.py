@@ -146,7 +146,7 @@ def gen_tables(doc):
 			while len(line) > 0 and i < len(lines):
 				cols = re.findall('^(.*): (.*)', line)[0]
 				raises.add_row(
-					type = cols[0].title(),
+					type = cols[0],
 					description = cols[1]
 				)
 				i += 1
