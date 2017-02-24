@@ -1,6 +1,8 @@
+from docgen import types
 import argparse
 import docgen
 import os
+import sys
 
 def main():
 	'''
@@ -25,8 +27,14 @@ def main():
 		nargs = '?'
 	)
 	args = parser.parse_args()
+	sys.path.append(os.getcwd())
 
-	print('Generating documentation for package %s' % args.package)
+	print('Generating documentation for package %s:\n' % args.package)
+
+	for mod in types.Package(args.package).save():
+		print(mod)
+
+	print('\n%s' % os.path.join(os.getcwd(), 'docs'))
 
 if __name__ == '__main__':
 	main()

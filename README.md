@@ -3,6 +3,30 @@ Docgen
 
 A markdown documentation generator for Python
 
+Usage
+-----
+
+	$ docgen -h
+	usage: docgen [-h] [-v] [package]
+
+	docgen v0.1.0
+
+	positional arguments:
+	  package        the name of the package in the current directory
+
+	optional arguments:
+	  -h, --help     show this help message and exit
+	  -v, --version  show program's version number and exit
+
+	Copyright (c) 2017, Justin Willis
+	$ docgen
+	Generating documentation for package docgen:
+
+	docgen.types
+	docgen.util
+
+	/home/bkvaluemeal/Documents/docgen/docs
+
 License
 -------
 
