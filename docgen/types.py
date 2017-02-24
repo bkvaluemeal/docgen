@@ -61,13 +61,15 @@ class Class(object):
 				pass
 
 	def __str__(self):
+		parent = inspect.getmro(self.obj)[1]
+		if parent.__module__ is not 'builtins':
+			parent = parent.__module__ + '.' + parent.__name__
+		else:
+			parent = parent.__name__
+
 		result = '### %s(%s)\n\n%s' % (
 			self.obj.__name__,
-			', '.join(
-				base.__name__ if base.__name__ is 'type'
-				else 'object'
-				for base in self.obj.__class__.__bases__
-			),
+			parent,
 			util.gen_tables(
 				textwrap.dedent(
 					self.obj.__doc__
