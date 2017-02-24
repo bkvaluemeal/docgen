@@ -27,7 +27,10 @@ class Function(object):
 		return '###%s %s(%s)\n\n%s' % (
 			'' if self.is_top else '#',
 			self.func.__name__,
-			', '.join(inspect.getargspec(self.func).args[1:]),
+			', '.join(
+				inspect.getargspec(self.func).args if self.is_top
+				else inspect.getargspec(self.func).args[1:]
+			),
 			util.gen_tables(
 				textwrap.dedent(
 					self.func.__doc__
