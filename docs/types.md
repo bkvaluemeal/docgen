@@ -6,7 +6,7 @@ Object types for documentation generation
 This module defines various containers for organizing the parts of a Python
 package.
 
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 **Classes:**
 ------------
@@ -28,9 +28,10 @@ A function
 
 **Args:**
 
-| Name |   Type   |     Description      |
-|------|----------|----------------------|
-| func | Function | The function to wrap |
+|  Name  |   Type   |            Description            |
+|--------|----------|-----------------------------------|
+| func   | Function | The function to wrap              |
+| is_top | Bool     | Is this function in the top level |
 
 
 ### Module(object)

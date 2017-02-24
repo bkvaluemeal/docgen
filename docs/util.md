@@ -3,12 +3,12 @@ Util
 
 Utility functions for documentation generation
 
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 **Functions:**
 --------------
 
-#### gen_tables()
+### gen_tables(doc)
 
 Processes a docstring and replaces lists with tables
 

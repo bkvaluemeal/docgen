@@ -3,6 +3,11 @@ Docgen
 
 A markdown documentation generator for Python
 
+Install
+-------
+
+	pip install docgen
+
 Usage
 -----
 
@@ -19,6 +24,7 @@ Usage
 	  -v, --version  show program's version number and exit
 
 	Copyright (c) 2017, Justin Willis
+
 	$ docgen
 	Generating documentation for package docgen:
 
