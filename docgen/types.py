@@ -103,11 +103,12 @@ class Module(object):
 
 		for name, mem in inspect.getmembers(self.mod):
 			if hasattr(mem, '__module__'):
-				if self.pkg in mem.__module__ and mem.__name__[0] is not '_':
-					if inspect.isclass(mem):
-						self.objs.append(Class(mem))
-					elif inspect.isfunction(mem):
-						self.funcs.append(Function(mem, True))
+				if self.mod.__name__ is mem.__module__:
+					if mem.__name__[0] is not '_':
+						if inspect.isclass(mem):
+							self.objs.append(Class(mem))
+						elif inspect.isfunction(mem):
+							self.funcs.append(Function(mem, True))
 
 	def __str__(self):
 		result = '%s\n%s\n\n%s\n\n%s' % (
