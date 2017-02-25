@@ -26,7 +26,7 @@ blurb = ('Docgen is a Python module that generates markdown documentation for'
 
 setup(
 	name = 'docgen',
-	version = '0.1.0',
+	version = '0.1.1',
 	author = 'Justin Willis',
 	author_email = 'sirJustin.Willis@gmail.com',
 	packages = find_packages(),

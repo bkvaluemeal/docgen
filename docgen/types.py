@@ -24,13 +24,19 @@ class Function(object):
 		self.is_top = is_top
 
 	def __str__(self):
+		spec = inspect.getargspec(self.func)
+		args = spec.args if self.is_top else spec.args[1:]
+
+		if spec.varargs:
+			args.append('\*%s' % spec.varargs)
+
+		if spec.keywords:
+			args.append('\*\*%s' % spec.keywords)
+
 		return '###%s %s(%s)\n\n%s' % (
 			'' if self.is_top else '#',
 			self.func.__name__,
-			', '.join(
-				inspect.getargspec(self.func).args if self.is_top
-				else inspect.getargspec(self.func).args[1:]
-			),
+			', '.join(args),
 			util.gen_tables(
 				textwrap.dedent(
 					self.func.__doc__

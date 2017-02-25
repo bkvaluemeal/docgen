@@ -14,7 +14,7 @@ Usage
 	$ docgen -h
 	usage: docgen [-h] [-v] [package]
 
-	docgen v0.1.0
+	docgen v0.1.1
 
 	positional arguments:
 	  package        the name of the package in the current directory

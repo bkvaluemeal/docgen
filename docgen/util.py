@@ -136,6 +136,29 @@ def gen_tables(doc):
 					pass
 
 			result += str(args) + '\n'
+		elif line == 'Kwargs:':
+			args = _Table('kwargs')
+			args.add_col('name')
+			args.add_col('type')
+			args.add_col('description')
+
+			i += 1
+			line = lines[i].strip()
+			while len(line) > 0 and i < len(lines):
+				cols = re.findall('^(.*) \(([^\W]+)\): (.*)', line)[0]
+				args.add_row(
+					name = cols[0],
+					type = cols[1].title(),
+					description = cols[2]
+				)
+				i += 1
+
+				try:
+					line = lines[i].strip()
+				except:
+					pass
+
+			result += str(args) + '\n'
 		elif line == 'Raises:':
 			raises = _Table('raises')
 			raises.add_col('type')
